@@ -64,6 +64,8 @@ export class Resize extends BaseModule {
         // set the proper cursor everywhere
         this.setCursor(this.dragBox.style.cursor);
         // listen for movement and mouseup
+		document.addEventListener('touchend', this.handleMouseup, false);
+        document.addEventListener('touchmove', this.handleDrag, false);
         document.addEventListener('mousemove', this.handleDrag, false);
         document.addEventListener('mouseup', this.handleMouseup, false);
     };
@@ -72,6 +74,8 @@ export class Resize extends BaseModule {
         // reset cursor everywhere
         this.setCursor('');
         // stop listening for movement and mouseup
+		document.removeEventListener('touchend', this.handleMouseup);
+        document.removeEventListener('touchmove', this.handleDrag);
         document.removeEventListener('mousemove', this.handleDrag);
         document.removeEventListener('mouseup', this.handleMouseup);
     };
